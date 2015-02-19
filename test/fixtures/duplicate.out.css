@@ -1,0 +1,4 @@
+.opacity {
+  opacity: .5;
+  filter: alpha(opacity=50);
+}
