@@ -15,7 +15,7 @@
 /* Output example */
 .foo {
   opacity: .5;
-  filter: alpha(opacity=50);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 }
 ```
 

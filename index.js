@@ -2,7 +2,7 @@ module.exports = function (opts) {
   opts = opts || {};
 
   var PROP         = 'opacity';
-  var PROP_REPLACE = 'filter';
+  var PROP_REPLACE = '-ms-filter';
 
   return function (css) {
 
@@ -13,7 +13,7 @@ module.exports = function (opts) {
 
         // get amount and create value
         var amount = Math.floor(decl.value * 100);
-        var VAL_REPLACE  = 'alpha(opacity=' + amount + ')';
+        var VAL_REPLACE  = '"progid:DXImageTransform.Microsoft.Alpha(Opacity=' + amount + ')"';
 
         // find if a filter opacity is already present
         var isFilterAlreadyPresent = false;
