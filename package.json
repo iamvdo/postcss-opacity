@@ -1,26 +1,31 @@
 {
-    "name": "postcss-opacity",
-    "version": "2.0.0",
-    "description": "PostCSS plugin to add opacity filter for IE8",
-    "keywords": ["postcss", "css", "postcssplugin", "opacity"],
-    "author": "Vincent De Oliveira <vincent@iamvdo.me>",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url":  "https://github.com/iamvdo/postcss-opacity.git"
-    },
-    "dependencies": {
-        "postcss": "^4.0.3"
-    },
-    "devDependencies": {
-        "jshint-stylish": "1.0.0",
-        "gulp-jshint":    "1.9.2",
-        "gulp-mocha":     "2.0.0",
-        "mocha":          "2.1.0",
-        "chai":           "1.10.0",
-        "gulp":           "3.8.11"
-    },
-    "scripts": {
-        "test": "gulp"
-    }
+  "name": "postcss-opacity",
+  "version": "2.0.0",
+  "description": "PostCSS plugin to add opacity filter for IE8",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "opacity"
+  ],
+  "author": "Vincent De Oliveira <vincent@iamvdo.me>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iamvdo/postcss-opacity.git"
+  },
+  "dependencies": {
+    "postcss": "^4.1.16"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-mocha": "^2.1.3",
+    "jshint-stylish": "^2.0.1",
+    "mocha": "^2.2.5"
+  },
+  "scripts": {
+    "test": "gulp"
+  }
 }
