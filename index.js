@@ -8,16 +8,16 @@ module.exports = postcss.plugin('postcss-opacity', function (opts) {
 
   return function (css) {
 
-    css.eachRule(function (rule) {
+    css.walkRules(function (rule) {
 
       // find if a filter opacity is already present
       var isFilterAlreadyPresent = false;
-      rule.eachDecl(PROP_REPLACE, function () {
+      rule.walkDecls(PROP_REPLACE, function () {
         isFilterAlreadyPresent = true;
       });
 
       if (!isFilterAlreadyPresent) {
-        rule.eachDecl(PROP, function (decl) {
+        rule.walkDecls(PROP, function (decl) {
 
           // get amount and create value
           var amount = Math.floor(decl.value * 100);
