@@ -1,3 +1,7 @@
+3.0.0 - 2015-09-14
+
+* Upgrade to PostCSS 5
+
 2.0.1 - 2015-08-12
 
 * Upgrade to PostCSS 4.1.x
