@@ -10,6 +10,15 @@ module.exports = postcss.plugin('postcss-opacity', function (opts) {
 
     css.walkRules(function (rule) {
 
+      if (rule.parent.type === 'atrule'
+            && rule.parent.name === 'keyframes'
+                || rule.parent.name === '-o-keyframes'
+                || rule.parent.name === '-moz-keyframes'
+                || rule.parent.name === '-webkit-keyframes'
+      ) {
+        return;
+      }
+                
       // find if a filter opacity is already present
       var isFilterAlreadyPresent = false;
       rule.walkDecls(PROP_REPLACE, function () {
