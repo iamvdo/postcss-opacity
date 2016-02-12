@@ -24,7 +24,7 @@ module.exports = postcss.plugin('postcss-opacity', function (opts) {
           var VAL_REPLACE  = '"progid:DXImageTransform.Microsoft.Alpha(Opacity=' + amount + ')"';
 
           // adds new property only if it's not present yet
-          rule.insertAfter(decl, {prop: PROP_REPLACE, value: VAL_REPLACE});
+          rule.insertBefore(decl, {prop: PROP_REPLACE, value: VAL_REPLACE});
 
         });
       }
