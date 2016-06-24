@@ -28,6 +28,10 @@ describe('postcss-opacity', function () {
       test('duplicate');
     });
 
+     it('does legacy', function () {
+      test('legacy', {legacy: true});
+    });
+
   });
 
 });

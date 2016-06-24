@@ -1,33 +1,62 @@
-var postcss = require('postcss');
+var postcss = require('postcss'),
+  concat = require('lodash.concat'),
+  each = require('lodash.foreach');
 
 module.exports = postcss.plugin('postcss-opacity', function (opts) {
   opts = opts || {};
+  opts.legacy = opts.legacy || false;
 
-  var PROP         = 'opacity';
-  var PROP_REPLACE = '-ms-filter';
+  var PROP = 'opacity';
 
   return function (css) {
 
     css.walkRules(function (rule) {
+      // Search through props, ignore current and insert whats missing
 
-      // find if a filter opacity is already present
-      var isFilterAlreadyPresent = false;
-      rule.walkDecls(PROP_REPLACE, function () {
-        isFilterAlreadyPresent = true;
+      var propsToTestInsert = (function (def) {
+        return concat(def, (opts.legacy) ? ['filter', '-moz-opacity', '-khtml-opacity'] : []);
+      })(['opacity', '-ms-filter']);
+
+      var propsToInsert = [];
+
+      each(propsToTestInsert, function (v) {
+        // find if prop based on legacy is found
+        var isPropAlreadyPresent = false;
+        rule.walkDecls(v, function () {
+          isPropAlreadyPresent = true;
+        });
+
+        if (!isPropAlreadyPresent) {
+          propsToInsert.push(v);
+        }
       });
 
-      if (!isFilterAlreadyPresent) {
+      each(propsToInsert, function (addProp) {
         rule.walkDecls(PROP, function (decl) {
+          var value = void 0,
+            subOne = decl.value,
+            subHundred = Math.floor(subOne * 100);
 
-          // get amount and create value
-          var amount = Math.floor(decl.value * 100);
-          var VAL_REPLACE  = '"progid:DXImageTransform.Microsoft.Alpha(Opacity=' + amount + ')"';
+          switch (addProp) {
+            case 'opacity':
+            case '-moz-opacity':
+            case '-khtml-opacity':
+              value = subOne;
+              break;
+            case 'filter':
+              value = 'alpha(opacity=' + subHundred + ')';
+              break;
+            case '-ms-filter':
+              value = '"progid:DXImageTransform.Microsoft.Alpha(Opacity=' + subHundred + ')"';
+              break;
+          }
 
-          // adds new property only if it's not present yet
-          rule.insertAfter(decl, {prop: PROP_REPLACE, value: VAL_REPLACE});
-
+          if (value) {
+            // adds new property only if it's not present yet and we actually found a prop
+            rule.insertAfter(decl, { prop: addProp, value: value });
+          }
         });
-      }
+      });
     });
 
   };
