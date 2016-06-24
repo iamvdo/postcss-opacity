@@ -5,7 +5,6 @@
   -khtml-opacity: .5;
   opacity: .5;
 }
-
 .opacity {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=21)";
   filter: alpha(opacity=21);

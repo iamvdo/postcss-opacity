@@ -17,15 +17,17 @@ module.exports = postcss.plugin('postcss-opacity', function(opts) {
 
       var propsToInsert = [];
 
-      propsToTestInsert.forEach(function(v) {
+      propsToTestInsert.sort(function(a, b) {
+        return a.order > b.order;
+      }).forEach(function(v) {
         // find if prop based on legacy is found
         var isPropAlreadyPresent = false;
-        rule.walkDecls(v, function() {
+        rule.walkDecls(v.prop, function() {
           isPropAlreadyPresent = true;
         });
 
         if (!isPropAlreadyPresent) {
-          propsToInsert.push(v);
+          propsToInsert.push(v.prop);
         }
       });
 
