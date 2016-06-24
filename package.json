@@ -15,8 +15,6 @@
     "url": "https://github.com/iamvdo/postcss-opacity.git"
   },
   "dependencies": {
-    "lodash.concat": "^4.3.1",
-    "lodash.foreach": "^4.3.0",
     "postcss": "^5.0.4"
   },
   "devDependencies": {

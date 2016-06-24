@@ -1,28 +1,26 @@
-var postcss = require('postcss'),
-  concat = require('lodash.concat'),
-  each = require('lodash.foreach');
+var postcss = require('postcss');
 
-module.exports = postcss.plugin('postcss-opacity', function (opts) {
+module.exports = postcss.plugin('postcss-opacity', function(opts) {
   opts = opts || {};
   opts.legacy = opts.legacy || false;
 
   var PROP = 'opacity';
 
-  return function (css) {
+  return function(css) {
 
-    css.walkRules(function (rule) {
+    css.walkRules(function(rule) {
       // Search through props, ignore current and insert whats missing
 
-      var propsToTestInsert = (function (def) {
-        return concat(def, (opts.legacy) ? ['filter', '-moz-opacity', '-khtml-opacity'] : []);
-      })(['opacity', '-ms-filter']);
+      var propsToTestInsert = (function(def) {
+        return def.concat((opts.legacy) ? [{ prop: 'filter', order: 1 }, { prop: '-moz-opacity', order: 2 }, { prop: '-khtml-opacity', order: 3 }] : []);
+      })([{ prop: 'opacity', order: 4 }, { prop: '-ms-filter', order: 0 }]);
 
       var propsToInsert = [];
 
-      each(propsToTestInsert, function (v) {
+      propsToTestInsert.forEach(function(v) {
         // find if prop based on legacy is found
         var isPropAlreadyPresent = false;
-        rule.walkDecls(v, function () {
+        rule.walkDecls(v, function() {
           isPropAlreadyPresent = true;
         });
 
@@ -31,8 +29,8 @@ module.exports = postcss.plugin('postcss-opacity', function (opts) {
         }
       });
 
-      each(propsToInsert, function (addProp) {
-        rule.walkDecls(PROP, function (decl) {
+      propsToInsert.forEach(function(addProp) {
+        rule.walkDecls(PROP, function(decl) {
           var value = void 0,
             subOne = decl.value,
             subHundred = Math.floor(subOne * 100);
@@ -53,7 +51,7 @@ module.exports = postcss.plugin('postcss-opacity', function (opts) {
 
           if (value) {
             // adds new property only if it's not present yet and we actually found a prop
-            rule.insertAfter(decl, { prop: addProp, value: value });
+            rule.insertBefore(decl, { prop: addProp, value: value });
           }
         });
       });

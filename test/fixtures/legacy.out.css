@@ -1,14 +1,15 @@
 .opacity {
-  opacity: .5;
-  -khtml-opacity: .5;
-  -moz-opacity: .5;
-  filter: alpha(opacity=50);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  -moz-opacity: .5;
+  -khtml-opacity: .5;
+  opacity: .5;
 }
+
 .opacity {
-  opacity: .216708;
-  -khtml-opacity: .216708;
-  -moz-opacity: .216708;
-  filter: alpha(opacity=21);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=21)";
+  filter: alpha(opacity=21);
+  -moz-opacity: .216708;
+  -khtml-opacity: .216708;
+  opacity: .216708;
 }
