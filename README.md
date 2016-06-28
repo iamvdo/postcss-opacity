@@ -60,5 +60,6 @@ postcss([
   /* Modern browsers */
   opacity: .5;
 }
+```
 
 See [PostCSS](https://github.com/postcss/postcss) docs for examples for your environment.
