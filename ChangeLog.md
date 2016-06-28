@@ -1,3 +1,8 @@
+4.0.0 - 2016-06-28
+
+* Fixed: `-ms-filter` before `opacity` (#10)
+* Added: `legacy` option to support legacy browsers (#12)
+
 3.0.0 - 2015-09-14
 
 * Upgrade to PostCSS 5
