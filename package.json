@@ -15,7 +15,7 @@
     "url": "https://github.com/iamvdo/postcss-opacity.git"
   },
   "dependencies": {
-    "postcss": "^5.0.4"
+    "postcss": "^6.0.7"
   },
   "devDependencies": {
     "chai": "^3.2.0",
