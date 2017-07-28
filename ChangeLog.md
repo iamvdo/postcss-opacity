@@ -1,3 +1,7 @@
+5.0.0 - 2017-07-28
+
+* Upgrade to PostCSS 6
+
 4.0.0 - 2016-06-28
 
 * Fixed: `-ms-filter` before `opacity` (#10)

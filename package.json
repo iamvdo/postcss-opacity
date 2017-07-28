@@ -1,6 +1,6 @@
 {
   "name": "postcss-opacity",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "PostCSS plugin to add opacity filter for IE8 and legacy browsers",
   "keywords": [
     "postcss",
